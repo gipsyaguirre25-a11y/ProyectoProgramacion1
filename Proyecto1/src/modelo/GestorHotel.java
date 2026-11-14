@@ -133,6 +133,7 @@ public final class GestorHotel {
         }
         return null;
     }
+    
    private Habitacion buscarHabitacion ( 
            String numero){
        for (Habitacion h: habitaciones) {
