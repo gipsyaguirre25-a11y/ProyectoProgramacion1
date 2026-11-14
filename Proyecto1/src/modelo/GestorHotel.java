@@ -133,7 +133,16 @@ public final class GestorHotel {
         }
         return null;
     }
-
+   private Habitacion buscarHabitacion ( 
+           String numero){
+       for (Habitacion h: habitaciones) {
+           if(h.getNumero().equals(numero)) {
+               return h;
+           }
+       }
+   
+            return null;
+   }
     public synchronized Reserva buscarReserva(
             String codigo) {
         if (codigo == null) {
