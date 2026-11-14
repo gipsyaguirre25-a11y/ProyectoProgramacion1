@@ -21,7 +21,6 @@ public class HotelController {
         configurarEventos();
 
         cargarDatos();
-
     }
 
     private void configurarEventos() {
@@ -38,6 +37,46 @@ public class HotelController {
         vista.btnSimular.addActionListener(e -> simular());
         vista.btnCambiarUsuario.addActionListener(e -> cambiarUsuario());
         vista.btnEjecutar.addActionListener(e -> ejecutarProcesos());
+
+    }
+
+    private void registrarHuesped() {
+
+    }
+
+    private void registrarHabitacion() {
+
+    }
+
+    private void registrarReserva() {
+
+    }
+
+    private void consultarDisponible() {
+
+    }
+
+    private void buscarReserva() {
+
+    }
+
+    private void procesarOperacion() {
+
+    }
+
+    private void simular() {
+
+    }
+
+    private void cambiarUsuario() {
+
+    }
+
+    private void ejecutarProcesos() {
+
+    }
+
+    private void actualizarIndicadores() {
 
     }
 
