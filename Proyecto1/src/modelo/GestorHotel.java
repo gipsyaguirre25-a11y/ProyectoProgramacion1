@@ -212,9 +212,6 @@ public final class GestorHotel {
         
         }
 
-/////Siguiente abajo  ////
-// Check in
-
     public synchronized void checkIn(
             String codigo) {
 
@@ -243,7 +240,6 @@ public final class GestorHotel {
 
         r.hacerCheckIn();
     }
-    // CHECK OUT
    
     public synchronized void checkOut(
             String codigo) {
@@ -267,7 +263,6 @@ public final class GestorHotel {
         r.hacerCheckOut(LocalDate.now());
     }
 
-    // VENCIDAS
     
     public synchronized int actualizarVencidas(
             LocalDate fecha) {
@@ -318,8 +313,6 @@ public final class GestorHotel {
         return resultado;
     }
 
-    
-    // MÉTODO RECURSIVO 1
    
     public static long ingresosRecursivos(
             List<Reserva> reservas,
@@ -347,8 +340,6 @@ public final class GestorHotel {
                         indice + 1);
     }
 
-   
-    // MÉTODO RECURSIVO 2
     
     public synchronized int contarDisponibles(
             LocalDate fecha) {
@@ -412,7 +403,7 @@ public final class GestorHotel {
     }
 
    
-    // INDICADORES
+    
    
     public synchronized IndicadoresHotel
             calcularIndicadores() {
@@ -459,9 +450,7 @@ public final class GestorHotel {
                 ingresos);
     }
 
-    // =============================
-    // CONTROL HILOS
-    // =============================
+  
     public synchronized boolean iniciarProcesos() {
 
         if (ProcesosActivos) {
@@ -476,8 +465,7 @@ public final class GestorHotel {
         ProcesosActivos = false;
     }
 
-    // GETTERS
-
+  
     public synchronized List<Huesped>
             getHuespedes() {
         return new ArrayList<>(huespedes);
