@@ -40,9 +40,11 @@ public class HotelController {
         vista.btnEjecutar.addActionListener(e -> ejecutarProcesos());
 
     }
-    private void cargarDatos(){
+
+    private void cargarDatos() {
         vista.lblRecepcionista.setText("Recepcionista :" + gestor.getRecepcionistaActivo());
-        
+
         actualizarIndicadores();
+
     }
 }
