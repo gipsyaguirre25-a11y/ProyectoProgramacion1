@@ -464,16 +464,16 @@ public final class GestorHotel {
     // =============================
     public synchronized boolean iniciarProcesos() {
 
-        if (procesosActivos) {
+        if (ProcesosActivos) {
             return false;
         }
 
-        procesosActivos = true;
+        ProcesosActivos = true;
         return true;
     }
 
     public synchronized void finalizarProcesos() {
-        procesosActivos = false;
+        ProcesosActivos = false;
     }
 
     // GETTERS
@@ -493,3 +493,4 @@ public final class GestorHotel {
         return new ArrayList<>(reservas);
 
     }
+}
