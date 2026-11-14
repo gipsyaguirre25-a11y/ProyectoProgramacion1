@@ -7,7 +7,9 @@ package modelo;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -117,12 +119,11 @@ public final class GestorHotel {
         validarTexto(numero, "Numero");
         for (Habitacion h : habitaciones) {
             if (h.getNumero().equalsIgnoreCase(numero.trim())) {
-              throw new IllegalArgumentException("La habitacion ya existe");
+                throw new IllegalArgumentException("La habitacion ya existe");
             }
         }
-            habitaciones.add(HabitacionFactory.crearHabitacion(numero.trim(), tipo));
-        }
-    
+        habitaciones.add(HabitacionFactory.crearHabitacion(numero.trim(), tipo));
+    }
 
     private Huesped buscarHuesped(String identificacion) {
         for (Huesped h : huespedes) {
@@ -201,13 +202,294 @@ public final class GestorHotel {
                 entrada, salida)) {
             throw new IllegalArgumentException("La habitacion no esta disponible");
         }
-        long noches = ChronoUnit.DAYS.between(entrada,salida);
-        long importe = noches *habitacion.getTarifa();
+        long noches = ChronoUnit.DAYS.between(entrada, salida);
+        long importe = noches * habitacion.getTarifa();
         String codigo = String.format("R%04d", ConsecutivoReserva++);
+
+        Reserva reserva = new Reserva(codigo, huesped, habitacion, personas, entrada, salida, noches, importe, RecepcionistaActivo.getUsuario());
+        reservas.add(reserva);
+        return reserva;
         
-        Reserva reserva = new Reserva(codigo, huesped,habitacion,personas,entrada,salida,noches,importe,RecepcionistaActivo.getUsuario());
-    reservas.add(reserva);
-    return reserva;
-    }
-   
+        }
+
 /////Siguiente abajo  ////
+// Check in
+
+    public synchronized void checkIn(
+            String codigo) {
+
+        Reserva r
+                = buscarReserva(codigo);
+
+        if (r == null) {
+
+            throw new IllegalArgumentException(
+                    "Reserva inexistente.");
+        }
+
+        if (r.getEstado()
+                != EstadoReserva.CONFIRMADA) {
+
+            throw new IllegalArgumentException(
+                    "La reserva no está confirmada.");
+        }
+
+        if (!r.getFechaEntrada()
+                .equals(LocalDate.now())) {
+
+            throw new IllegalArgumentException(
+                    "No corresponde la fecha de ingreso.");
+        }
+
+        r.hacerCheckIn();
+    }
+    // CHECK OUT
+   
+    public synchronized void checkOut(
+            String codigo) {
+
+        Reserva r
+                = buscarReserva(codigo);
+
+        if (r == null) {
+
+            throw new IllegalArgumentException(
+                    "Reserva inexistente.");
+        }
+
+        if (r.getEstado()
+                != EstadoReserva.HOSPEDADO) {
+
+            throw new IllegalArgumentException(
+                    "La reserva no está hospedada.");
+        }
+
+        r.hacerCheckOut(LocalDate.now());
+    }
+
+    // VENCIDAS
+    
+    public synchronized int actualizarVencidas(
+            LocalDate fecha) {
+
+        int actualizadas = 0;
+
+        for (Reserva r : reservas) {
+
+            if (r.getEstado()
+                    == EstadoReserva.CONFIRMADA
+                    && r.getFechaEntrada()
+                            .isBefore(fecha)) {
+
+                r.marcarVencida();
+                actualizadas++;
+            }
+        }
+
+        return actualizadas;
+    }
+
+    public synchronized List<Reserva>
+            simularVencidas(
+                    LocalDate fechaFutura) {
+
+        if (fechaFutura == null
+                || !fechaFutura.isAfter(
+                        LocalDate.now())) {
+
+            throw new IllegalArgumentException(
+                    "Debe ingresar una fecha futura.");
+        }
+
+        List<Reserva> resultado
+                = new ArrayList<>();
+
+        for (Reserva r : reservas) {
+
+            if (r.getEstado()
+                    == EstadoReserva.CONFIRMADA
+                    && r.getFechaEntrada()
+                            .isBefore(fechaFutura)) {
+
+                resultado.add(r);
+            }
+        }
+
+        return resultado;
+    }
+
+    
+    // MÉTODO RECURSIVO 1
+   
+    public static long ingresosRecursivos(
+            List<Reserva> reservas,
+            int indice) {
+
+        if (indice >= reservas.size()) {
+            return 0;
+        }
+
+        Reserva r
+                = reservas.get(indice);
+
+        long importe = 0;
+
+        if (r.getEstado()
+                == EstadoReserva.CONFIRMADA) {
+
+            importe
+                    = r.getImporte();
+        }
+
+        return importe
+                + ingresosRecursivos(
+                        reservas,
+                        indice + 1);
+    }
+
+   
+    // MÉTODO RECURSIVO 2
+    
+    public synchronized int contarDisponibles(
+            LocalDate fecha) {
+
+        return contarDisponiblesRecursivo(
+                habitaciones,
+                reservas,
+                fecha,
+                0);
+    }
+
+    private static boolean estaLibre(
+            Habitacion habitacion,
+            List<Reserva> reservas,
+            LocalDate fecha) {
+
+        for (Reserva r : reservas) {
+
+            if (r.getHabitacion().getNumero()
+                    .equals(
+                            habitacion.getNumero())
+                    && (r.getEstado()
+                    == EstadoReserva.CONFIRMADA
+                    || r.getEstado()
+                    == EstadoReserva.HOSPEDADO)
+                    && !fecha.isBefore(
+                            r.getFechaEntrada())
+                    && fecha.isBefore(
+                            r.getFechaSalida())) {
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static int contarDisponiblesRecursivo(
+            List<Habitacion> habitaciones,
+            List<Reserva> reservas,
+            LocalDate fecha,
+            int indice) {
+
+        if (indice >= habitaciones.size()) {
+            return 0;
+        }
+
+        int disponible
+                = estaLibre(
+                        habitaciones.get(indice),
+                        reservas,
+                        fecha)
+                        ? 1 : 0;
+
+        return disponible
+                + contarDisponiblesRecursivo(
+                        habitaciones,
+                        reservas,
+                        fecha,
+                        indice + 1);
+    }
+
+   
+    // INDICADORES
+   
+    public synchronized IndicadoresHotel
+            calcularIndicadores() {
+
+        Set<String> ocupadas
+                = new HashSet<>();
+
+        int confirmadas = 0;
+        int vencidas = 0;
+
+        for (Reserva r : reservas) {
+
+            if (r.getEstado()
+                    == EstadoReserva.HOSPEDADO) {
+
+                ocupadas.add(
+                        r.getHabitacion()
+                                .getNumero());
+            }
+
+            if (r.getEstado()
+                    == EstadoReserva.CONFIRMADA) {
+
+                confirmadas++;
+            }
+
+            if (r.getEstado()
+                    == EstadoReserva.VENCIDA) {
+
+                vencidas++;
+            }
+        }
+
+        long ingresos
+                = ingresosRecursivos(
+                        reservas,
+                        0);
+
+        return new IndicadoresHotel(
+                habitaciones.size(),
+                ocupadas.size(),
+                confirmadas,
+                vencidas,
+                ingresos);
+    }
+
+    // =============================
+    // CONTROL HILOS
+    // =============================
+    public synchronized boolean iniciarProcesos() {
+
+        if (procesosActivos) {
+            return false;
+        }
+
+        procesosActivos = true;
+        return true;
+    }
+
+    public synchronized void finalizarProcesos() {
+        procesosActivos = false;
+    }
+
+    // GETTERS
+
+    public synchronized List<Huesped>
+            getHuespedes() {
+        return new ArrayList<>(huespedes);
+    }
+
+    public synchronized List<Habitacion>
+            getHabitaciones() {
+        return new ArrayList<>(habitaciones);
+    }
+
+    public synchronized List<Reserva>
+            getReservas() {
+        return new ArrayList<>(reservas);
+
+    }
