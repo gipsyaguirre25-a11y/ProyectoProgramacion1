@@ -38,6 +38,21 @@ public class Reserva {
         this.recepcionista = recepcionista;
     }
 
+    public Reserva( String codigo, Huesped huesped, Habitacion habitacion, int cantidadPersonas,LocalDate fechaEntrada, LocalDate fechaSalida, long noches, long importe, String recepcionista) {
+
+        this.codigo = codigo;
+        this.huesped = huesped;
+        this.habitacion = habitacion;
+        this.cantidadPersonas = cantidadPersonas;
+        this.fechaEntrada = fechaEntrada;
+        this.fechaSalida = fechaSalida;
+        this.noches = noches;
+        this.importe = importe;
+        this.recepcionista = recepcionista;
+
+        this.estado = EstadoReserva.CONFIRMADA;
+    }
+
     public String getCodigo() {
         return codigo;
     }
