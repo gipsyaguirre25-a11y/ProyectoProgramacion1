@@ -17,6 +17,30 @@ public class PnlHabitaciones extends javax.swing.JPanel {
         initComponents();
     }
 
+    public javax.swing.JTextField getTxtNumero() {
+        return txtNumero;
+    }
+
+    public javax.swing.JComboBox<String> getCboTipo() {
+        return cboTipo;
+    }
+
+    public javax.swing.JTextField getTxtCapacidad() {
+        return txtCapacidad;
+    }
+
+    public javax.swing.JTextField getTxtTarifa() {
+        return txtTarifa;
+    }
+
+    public javax.swing.JButton getBtnRegistrar() {
+        return btnRegistrar;
+    }
+
+    public javax.swing.JTable getTblHabitaciones() {
+        return tblHabitaciones;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

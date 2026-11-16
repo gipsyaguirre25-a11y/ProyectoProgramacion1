@@ -20,16 +20,11 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {  FrmLogin login = new FrmLogin();
 
-            FrmLogin login = new FrmLogin();
-
-            LoginController controlador
-                    = new LoginController(login);
+            LoginController controlador = new LoginController(login);
 
             controlador.mostrar();
         });
-
     }
-
 }
