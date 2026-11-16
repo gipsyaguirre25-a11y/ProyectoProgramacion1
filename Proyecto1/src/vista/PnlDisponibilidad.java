@@ -4,7 +4,6 @@ package vista;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 /**
  *
  * @author Diana
@@ -16,6 +15,22 @@ public class PnlDisponibilidad extends javax.swing.JPanel {
      */
     public PnlDisponibilidad() {
         initComponents();
+    }
+
+    public javax.swing.JTextField getTxtFecha() {
+        return txtFecha;
+    }
+
+    public javax.swing.JButton getBtnConsultar() {
+        return btnConsultar;
+    }
+
+    public javax.swing.JLabel getLblCantidad() {
+        return lblCantidad;
+    }
+
+    public javax.swing.JTextArea getTxtResultado() {
+        return txtResultado;
     }
 
     /**
@@ -33,7 +48,7 @@ public class PnlDisponibilidad extends javax.swing.JPanel {
         lblCantidad = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtResultado = new javax.swing.JTextArea();
         btnConsultar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -45,9 +60,9 @@ public class PnlDisponibilidad extends javax.swing.JPanel {
 
         lblCantidad.setText("0");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtResultado.setColumns(20);
+        txtResultado.setRows(5);
+        jScrollPane1.setViewportView(txtResultado);
 
         btnConsultar.setText("Consultar");
 
@@ -127,8 +142,8 @@ public class PnlDisponibilidad extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
