@@ -4,6 +4,7 @@
  */
 package Principal;
 
+import vista.FrmLogin;
 import Controlador.LoginController;
 import javax.swing.SwingUtilities;
 
