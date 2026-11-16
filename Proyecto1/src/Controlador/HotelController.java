@@ -5,7 +5,16 @@
 package Controlador;
 
 import modelo.GestorHotel;
-
+import vista.FrmHotel;
+import vista.PnlCheck;
+import vista.PnlDisponibilidad;
+import vista.PnlHabitaciones;
+import vista.PnlHuespedes;
+import vista.PnlInicio;
+import vista.PnlReservas;
+import vista.PnlSimulacion;
+import modelo.IndicadoresHotel;
+import vista.PnlIndicadores;
 /**
  *
  * @author gipsy
@@ -22,23 +31,52 @@ public class HotelController {
 
         cargarDatos();
     }
-
-    private void configurarEventos() {
-        vista.btnRegistrarHuesped.addActionListener(e -> registrarHuesped());
-
-        vista.btnregistrarHabitacion.addActionListener(e -> registrarHabitacion());
-
-        vista.btnConsultar.addActionListener(e -> consultarDisponible());
-
-        vista.btnbuscar.addActionListener(e -> buscarReserva());
-
-        vista.btnProcesar.addActionListener(e -> procesarOperacion());
-
-        vista.btnSimular.addActionListener(e -> simular());
-        vista.btnCambiarUsuario.addActionListener(e -> cambiarUsuario());
-        vista.btnEjecutar.addActionListener(e -> ejecutarProcesos());
-
+       public void mostrar() {
+        vista.setLocationRelativeTo(null);
+        vista.setVisible(true);
     }
+
+private void configurarEventos() {
+
+
+    vista.getPnlHuespedes().getBtnRegistrar()
+            .addActionListener(e -> registrarHuesped());
+
+  
+    vista.getPnlHabitaciones().getBtnRegistrar()
+            .addActionListener(e -> registrarHabitacion());
+
+    
+    vista.getPnlReservas().getBtnRegistrar()
+            .addActionListener(e -> registrarReserva());
+
+   
+    vista.getPnlDisponibilidad().getBtnConsultar()
+            .addActionListener(e -> consultarDisponible());
+
+ 
+    vista.getPnlCheck().getBtnBuscar()
+            .addActionListener(e -> buscarReserva());
+
+    
+    vista.getPnlCheck().getBtnProcesar()
+            .addActionListener(e -> procesarOperacion());
+
+ 
+    vista.getPnlSimulacion().getBtnSimular()
+            .addActionListener(e -> simular());
+
+  
+    vista.getBtnCambiarUsuario()
+            .addActionListener(e -> cambiarUsuario());
+
+   
+    vista.getPnlInicio().getBtnEjecutarProcesos()
+            .addActionListener(e -> ejecutarProcesos());
+}
+
+
+
 
     private void registrarHuesped() {
 
@@ -78,12 +116,37 @@ public class HotelController {
 
     private void actualizarIndicadores() {
 
+
+    IndicadoresHotel datos = gestor.calcularIndicadores();
+
+    PnlIndicadores panel = vista.getPnlIndicadores();
+
+    panel.getLblTotal().setText(
+            String.valueOf(datos.totalHabitaciones));
+
+    panel.getLblOcupadas().setText(
+            String.valueOf(datos.habitacionesOcupadas));
+
+    panel.getLblNoOcupadas().setText(
+            String.valueOf(datos.habitacionesLibres));
+
+    panel.getLblConfirmadas().setText(
+            String.valueOf(datos.reservasConfirmadas));
+
+    panel.getLblVencidas().setText(
+            String.valueOf(datos.reservasVencidas));
+
+    panel.getLblIngresos().setText(
+            "₡" + datos.ingresosEsperados);
+
     }
 
-    private void cargarDatos() {
-        vista.lblRecepcionista.setText("Recepcionista :" + gestor.getRecepcionistaActivo());
+  private void cargarDatos() {
 
-        actualizarIndicadores();
+    vista.getLblRecepcionista().setText(
+            "Recepcionista: "
+            + gestor.getRecepcionistaActivo());
 
-    }
+    actualizarIndicadores();
+}
 }

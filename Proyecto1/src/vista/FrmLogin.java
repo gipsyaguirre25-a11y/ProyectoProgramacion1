@@ -16,18 +16,23 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Creates new form FrmLogin
      */
-    public FrmLogin() {
-        initComponents();
-        setLocationRelativeTo(null);
-        pnlLogin = new vista.PnlLogin();
-        getContentPane().add(pnlLogin);
-        pack(); 
-    }
+    
+public FrmLogin() {
+    initComponents();
 
-    public PnlLogin getPnlLogin() {
-        return pnlLogin;
-    }
+    pnlLogin = new PnlLogin();
 
+    setContentPane(pnlLogin);
+
+    pack();
+
+    setLocationRelativeTo(null);
+}
+
+
+public PnlLogin getPnlLogin() {
+    return pnlLogin;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

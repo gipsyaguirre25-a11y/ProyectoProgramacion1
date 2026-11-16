@@ -42,9 +42,9 @@ public final class GestorHotel {
 
         ProcesosActivos = false;
 
-        recepcionista.add(new Recepcionista("Recepcion1", "Hotel123"));
+        recepcionista.add(new Recepcionista("recepcion1", "Hotel123"));
 
-        recepcionista.add(new Recepcionista("Recepcion2", "Hotel1456"));
+        recepcionista.add(new Recepcionista("recepcion2", "Hotel1456"));
     }
 
     public synchronized boolean iniciarSesion(
