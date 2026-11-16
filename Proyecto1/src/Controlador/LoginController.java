@@ -3,9 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
+
+import vista.FrmLogin;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import modelo.GestorHotel;
+import vista.PnlLogin;
+import vista.FrmHotel;
 
 /**
  *
@@ -15,6 +19,11 @@ public class LoginController {
 
     private final FrmLogin vista;
     private final GestorHotel gestor = GestorHotel.getInstancia();
+
+    public LoginController(FrmLogin vista) {
+        this.vista = vista;
+        configurarEventos();
+    }
 
     private void configurarEventos() {
 
@@ -54,6 +63,7 @@ public class LoginController {
             JOptionPane.showMessageDialog(
                     vista,
                     "Usuario o contraseña incorrectos.");
+            panel.getTxtPassword().setText("");
         }
     }
 
