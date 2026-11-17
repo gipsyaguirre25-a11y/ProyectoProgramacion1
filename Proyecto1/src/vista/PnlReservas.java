@@ -15,43 +15,56 @@ public class PnlReservas extends javax.swing.JPanel {
      */
     public PnlReservas() {
         initComponents();
+        cboHuesped.removeAllItems();
+        cboHabitacion.removeAllItems();
+
+        txtEntrada.setToolTipText("Formato: AAAA-MM-DD");
+        txtSalida.setToolTipText("Formato: AAAA-MM-DD");
+        javax.swing.table.DefaultTableModel modeloTabla = new javax.swing.table.DefaultTableModel(
+                new Object[][]{}, new String[]{"Código", "Habitación", "Entrada", "Salida", "Estado", "Importe"}) {
+            @Override
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
+            }
+        };
+        tblReservas.setModel(modeloTabla);
     }
-   
-public javax.swing.JComboBox<String> getCboHuesped() {
-    return cboHuesped;
-}
 
-public javax.swing.JComboBox<String> getCboHabitacion() {
-    return cboHabitacion;
-}
+    public javax.swing.JComboBox<String> getCboHuesped() {
+        return cboHuesped;
+    }
 
-public javax.swing.JTextField getTxtPersonas() {
-    return txtPersonas;
-}
+    public javax.swing.JComboBox<String> getCboHabitacion() {
+        return cboHabitacion;
+    }
 
-public javax.swing.JTextField getTxtEntrada() {
-    return txtEntrada;
-}
+    public javax.swing.JTextField getTxtPersonas() {
+        return txtPersonas;
+    }
 
-public javax.swing.JTextField getTxtSalida() {
-    return txtSalida;
-}
+    public javax.swing.JTextField getTxtEntrada() {
+        return txtEntrada;
+    }
 
-public javax.swing.JTextField getTxtNoches() {
-    return txtNoches;
-}
+    public javax.swing.JTextField getTxtSalida() {
+        return txtSalida;
+    }
 
-public javax.swing.JTextField getTxtImporte() {
-    return txtImporte;
-}
+    public javax.swing.JTextField getTxtNoches() {
+        return txtNoches;
+    }
 
-public javax.swing.JButton getBtnRegistrar() {
-    return btnRegistrarReserva;
-}
+    public javax.swing.JTextField getTxtImporte() {
+        return txtImporte;
+    }
 
-public javax.swing.JTable getTblReservas() {
-    return tblReservas;
-}
+    public javax.swing.JButton getBtnRegistrar() {
+        return btnRegistrarReserva;
+    }
+
+    public javax.swing.JTable getTblReservas() {
+        return tblReservas;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,10 +115,6 @@ public javax.swing.JTable getTblReservas() {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("                 Registro de Reservas ");
-
-        cboHuesped.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cboHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
@@ -215,17 +224,17 @@ public javax.swing.JTable getTblReservas() {
                     .addComponent(cboHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
