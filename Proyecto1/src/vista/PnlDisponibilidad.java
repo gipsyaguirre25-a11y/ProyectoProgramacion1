@@ -15,6 +15,12 @@ public class PnlDisponibilidad extends javax.swing.JPanel {
      */
     public PnlDisponibilidad() {
         initComponents();
+
+        txtFecha.setToolTipText("Formato: AAAA-MM-DD");
+        txtResultado.setLineWrap(true);
+        txtResultado.setWrapStyleWord(true);
+        lblCantidad.setText("0");
+
     }
 
     public javax.swing.JTextField getTxtFecha() {
@@ -60,6 +66,7 @@ public class PnlDisponibilidad extends javax.swing.JPanel {
 
         lblCantidad.setText("0");
 
+        txtResultado.setEditable(false);
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
         jScrollPane1.setViewportView(txtResultado);
