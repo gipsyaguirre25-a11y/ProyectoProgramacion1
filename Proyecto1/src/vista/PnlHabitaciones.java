@@ -15,7 +15,19 @@ public class PnlHabitaciones extends javax.swing.JPanel {
      */
     public PnlHabitaciones() {
         initComponents();
-    }
+
+        javax.swing.table.DefaultTableModel modeloTabla = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Número", "Tipo", "Capacidad", "Tarifa"}) {
+
+            @Override
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
+            }
+
+        };
+
+            tblHabitaciones.setModel (modeloTabla);
+
+        }
 
     public javax.swing.JTextField getTxtNumero() {
         return txtNumero;
@@ -72,18 +84,19 @@ public class PnlHabitaciones extends javax.swing.JPanel {
 
         jLabel3.setText("Tipo de habitación");
 
+        txtCapacidad.setEditable(false);
+
+        txtTarifa.setEditable(false);
+
         jLabel4.setText("Capacidad");
 
         jLabel5.setText("Tarifa por noche");
 
-        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Tipo" }));
+        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Doble", "Familiar" }));
 
         tblHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 

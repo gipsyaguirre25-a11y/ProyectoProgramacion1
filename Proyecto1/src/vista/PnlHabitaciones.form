@@ -142,8 +142,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCapacidad">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTarifa">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -158,8 +164,10 @@
         <Component class="javax.swing.JComboBox" name="cboTipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Seleccionar Tipo"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Individual"/>
+                <StringItem index="1" value="Doble"/>
+                <StringItem index="2" value="Familiar"/>
               </StringArray>
             </Property>
           </Properties>
@@ -177,7 +185,7 @@
             <Component class="javax.swing.JTable" name="tblHabitaciones">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="0" rowCount="4"/>
+                  <Table columnCount="0" rowCount="0"/>
                 </Property>
               </Properties>
             </Component>
