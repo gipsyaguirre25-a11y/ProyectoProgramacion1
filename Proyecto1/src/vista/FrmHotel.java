@@ -13,89 +13,88 @@ public class FrmHotel extends javax.swing.JFrame {
     /**
      * Creates new form FrmHotel
      */
-   
-public FrmHotel() {
-    initComponents();
+    public FrmHotel() {
+        initComponents();
 
-    tabbedHotel.removeAll();
+        tabbedHotel.removeAll();
 
-    tabbedHotel.addTab("Inicio", panelInicio);
-    tabbedHotel.addTab("Huéspedes", panelHuespedes);
-    tabbedHotel.addTab("Habitaciones", panelHabitaciones);
-    tabbedHotel.addTab("Reservas", panelReservas);
-    tabbedHotel.addTab("Disponibilidad", panelDisponibilidad);
-    tabbedHotel.addTab("Check-in/out", panelCheck);
-    tabbedHotel.addTab("Simulación", panelSimulacion);
-    tabbedHotel.addTab("Indicadores", panelIndicadores);
+        tabbedHotel.addTab("Inicio", panelInicio);
+        tabbedHotel.addTab("Huéspedes", panelHuespedes);
+        tabbedHotel.addTab("Habitaciones", panelHabitaciones);
+        tabbedHotel.addTab("Reservas", panelReservas);
+        tabbedHotel.addTab("Disponibilidad", panelDisponibilidad);
+        tabbedHotel.addTab("Check-in/out", panelCheck);
+        tabbedHotel.addTab("Simulación", panelSimulacion);
+        tabbedHotel.addTab("Indicadores", panelIndicadores);
 
-    setLocationRelativeTo(null);
-}
+        pack();
 
-    
-private final PnlInicio panelInicio =
-        new PnlInicio();
+        setLocationRelativeTo(null);
+    }
 
-private final PnlHuespedes panelHuespedes =
-        new PnlHuespedes();
+    private final PnlInicio panelInicio
+            = new PnlInicio();
 
-private final PnlHabitaciones panelHabitaciones =
-        new PnlHabitaciones();
+    private final PnlHuespedes panelHuespedes
+            = new PnlHuespedes();
 
-private final PnlReservas panelReservas =
-        new PnlReservas();
+    private final PnlHabitaciones panelHabitaciones
+            = new PnlHabitaciones();
 
-private final PnlDisponibilidad panelDisponibilidad =
-        new PnlDisponibilidad();
+    private final PnlReservas panelReservas
+            = new PnlReservas();
 
-private final PnlCheck panelCheck =
-        new PnlCheck();
+    private final PnlDisponibilidad panelDisponibilidad
+            = new PnlDisponibilidad();
 
-private final PnlSimulacion panelSimulacion =
-        new PnlSimulacion();
+    private final PnlCheck panelCheck
+            = new PnlCheck();
 
-private final PnlIndicadores panelIndicadores =
-        new PnlIndicadores();
+    private final PnlSimulacion panelSimulacion
+            = new PnlSimulacion();
 
+    private final PnlIndicadores panelIndicadores
+            = new PnlIndicadores();
 
-public PnlInicio getPnlInicio() {
-    return panelInicio;
-}
+    public PnlInicio getPnlInicio() {
+        return panelInicio;
+    }
 
-public PnlHuespedes getPnlHuespedes() {
-    return panelHuespedes;
-}
+    public PnlHuespedes getPnlHuespedes() {
+        return panelHuespedes;
+    }
 
-public PnlHabitaciones getPnlHabitaciones() {
-    return panelHabitaciones;
-}
+    public PnlHabitaciones getPnlHabitaciones() {
+        return panelHabitaciones;
+    }
 
-public PnlReservas getPnlReservas() {
-    return panelReservas;
-}
+    public PnlReservas getPnlReservas() {
+        return panelReservas;
+    }
 
-public PnlDisponibilidad getPnlDisponibilidad() {
-    return panelDisponibilidad;
-}
+    public PnlDisponibilidad getPnlDisponibilidad() {
+        return panelDisponibilidad;
+    }
 
-public PnlCheck getPnlCheck() {
-    return panelCheck;
-}
+    public PnlCheck getPnlCheck() {
+        return panelCheck;
+    }
 
-public PnlSimulacion getPnlSimulacion() {
-    return panelSimulacion;
-}
+    public PnlSimulacion getPnlSimulacion() {
+        return panelSimulacion;
+    }
 
-public PnlIndicadores getPnlIndicadores() {
-    return panelIndicadores;
-}
+    public PnlIndicadores getPnlIndicadores() {
+        return panelIndicadores;
+    }
 
-public javax.swing.JButton getBtnCambiarUsuario() {
-    return btnCambiarUsuario;
-}
+    public javax.swing.JButton getBtnCambiarUsuario() {
+        return btnCambiarUsuario;
+    }
 
-public javax.swing.JLabel getLblRecepcionista() {
-    return lblRecepcionista;
-}
+    public javax.swing.JLabel getLblRecepcionista() {
+        return lblRecepcionista;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
