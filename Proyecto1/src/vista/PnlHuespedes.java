@@ -4,7 +4,6 @@ package vista;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 /**
  *
  * @author Diana
@@ -16,6 +15,16 @@ public class PnlHuespedes extends javax.swing.JPanel {
      */
     public PnlHuespedes() {
         initComponents();
+
+        javax.swing.table.DefaultTableModel modeloTabla = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Identificación", "Nombre", "Teléfono", "Correo electrónico"}) {
+            @Override
+            public boolean isCellEditable(int fila, int columna) {
+                return false;
+            }
+        };
+
+        tblHuespedes.setModel(modeloTabla);
+
     }
 
     public javax.swing.JTextField getTxtIdentificacion() {
@@ -69,7 +78,7 @@ public class PnlHuespedes extends javax.swing.JPanel {
 
         jLabel1.setText("Identificación");
 
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Nombre completo");
 
         jLabel3.setText("Teléfono");
 
@@ -77,7 +86,7 @@ public class PnlHuespedes extends javax.swing.JPanel {
 
         jLabel5.setText("Registro de huéspedes");
 
-        btnRegistrar.setText("Registrar Huesped");
+        btnRegistrar.setText("Registrar huésped");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
