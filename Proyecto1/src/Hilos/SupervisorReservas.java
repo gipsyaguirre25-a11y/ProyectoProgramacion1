@@ -33,9 +33,9 @@ public class SupervisorReservas implements Runnable{
         try {
             for (int i = 1; i<= 5; i++) {
                 
-                int actulizadas = gestor.actualizarVencidas(LocalDate.now());
+                int actualizadas = gestor.actualizarVencidas(LocalDate.now());
                 
-                System.out.println("[" + nombre + "] Ciclo " + i +   "-Reserva vencidad actuzalidas" + actulizadas);
+                System.out.println("[" + nombre + "] Ciclo " + i +   "-Reserva vencidad actuazalidas" + actualizadas);
                 
                 if (i < 5) {
                     Thread.sleep(1000);

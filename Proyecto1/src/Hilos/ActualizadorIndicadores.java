@@ -26,36 +26,48 @@ public class ActualizadorIndicadores implements Runnable {
         this.alFinalizar = alFinalizar;
     }
 
-    @Override
+   @Override
+public void run() {
 
-    public void run() {
+    String nombre =
+            Thread.currentThread().getName();
 
-        try {
-            for (int i = 1; i < 5; i++) {
-                Thread.sleep(1000);
+    System.out.println(
+            "[" + nombre + "] Inicio");
 
-                IndicadoresHotel datos = gestor.calcularIndicadores();
+    try {
 
-                System.out.println("Actualizar de indicadores - Ciclo " + i);
-                System.out.println("Habitaciones totales: " + datos.totalHabitaciones);
-                System.out.println("Actualizar de indicadores - Ciclo " + datos.habitacionesOcupadas);
-                System.out.println("Actualizar de indicadores - Ciclo " + datos.reservasConfirmadas);
-                System.out.println("Actualizar de indicadores - Ciclo " + datos.reservasVencidas);
-                System.out.println("Ingresos esperados: ₡ " + datos.ingresosEsperados);
+        for (int i = 1; i <= 5; i++) {
 
-                alActualizar.accept(datos);
-
-            }
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
+            IndicadoresHotel datos =
+                    gestor.calcularIndicadores();
 
             System.out.println(
-                    "Actualizador de indicadores interrumpido.");
+                    "[" + nombre + "] Ciclo "
+                    + i);
 
-        } finally {
+            alActualizar.accept(datos);
 
-            alFinalizar.run();
+            if (i < 5) {
+                Thread.sleep(1000);
+            }
         }
-    }
 
+    } catch (InterruptedException ex) {
+
+        Thread.currentThread().interrupt();
+
+        System.out.println(
+                "[" + nombre
+                + "] Interrumpido");
+
+    } finally {
+
+        System.out.println(
+                "[" + nombre
+                + "] Finalizado");
+
+        alFinalizar.run();
+    }
+}
 }
