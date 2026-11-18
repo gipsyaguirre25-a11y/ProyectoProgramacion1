@@ -121,6 +121,8 @@ public class FrmHotel extends javax.swing.JFrame {
             }
         });
 
+        tabbedHotel.setBackground(new java.awt.Color(255, 0, 204));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

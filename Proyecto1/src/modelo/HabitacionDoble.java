@@ -23,7 +23,7 @@ public class HabitacionDoble extends Habitacion{
     }
     @Override
     public long getTarifa(){
-        return 65000L;
+        return 40000L;
     }
     
 }

@@ -185,7 +185,6 @@ public class HotelController {
                 vista.getPnlReservas().getTblReservas().getModel();
         tabla.setRowCount(0);
         for (Reserva r : gestor.getReservas()) {
-            // Orden exacto de las seis columnas existentes en PnlReservas.
             tabla.addRow(new Object[]{
                 r.getCodigo(), r.getHabitacion().getNumero(),
                 r.getFechaEntrada(), r.getFechaSalida(),
